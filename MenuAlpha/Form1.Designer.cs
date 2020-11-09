@@ -68,6 +68,11 @@
             this.tytul = new System.Windows.Forms.Label();
             this.close = new System.Windows.Forms.Button();
             this.minimize = new System.Windows.Forms.Button();
+            this.anuluj = new System.Windows.Forms.Button();
+            this.btnNTR = new System.Windows.Forms.Button();
+            this.btnNM = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tytul2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.markaBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.markaBindingSource1BindingNavigator)).BeginInit();
@@ -135,6 +140,7 @@
             this.markaBindingSource1BindingNavigator.BindingSource = this.markaBindingSource1;
             this.markaBindingSource1BindingNavigator.CountItem = this.toolStripLabel1;
             this.markaBindingSource1BindingNavigator.DeleteItem = this.toolStripButton6;
+            this.markaBindingSource1BindingNavigator.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.markaBindingSource1BindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
@@ -166,7 +172,7 @@
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Size = new System.Drawing.Size(24, 22);
             this.toolStripButton5.Text = "Add new";
             // 
             // toolStripLabel1
@@ -182,7 +188,7 @@
             this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton6.Size = new System.Drawing.Size(24, 22);
             this.toolStripButton6.Text = "Delete";
             // 
             // toolStripButton1
@@ -191,7 +197,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(24, 22);
             this.toolStripButton1.Text = "Move first";
             // 
             // toolStripButton2
@@ -200,7 +206,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(24, 22);
             this.toolStripButton2.Text = "Move previous";
             // 
             // toolStripSeparator1
@@ -212,7 +218,6 @@
             // 
             this.toolStripTextBox1.AccessibleName = "Position";
             this.toolStripTextBox1.AutoSize = false;
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(50, 23);
             this.toolStripTextBox1.Text = "0";
@@ -229,7 +234,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(24, 22);
             this.toolStripButton3.Text = "Move next";
             // 
             // toolStripButton4
@@ -238,7 +243,7 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Size = new System.Drawing.Size(24, 22);
             this.toolStripButton4.Text = "Move last";
             // 
             // toolStripSeparator3
@@ -251,7 +256,7 @@
             this.markaBindingSource1BindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.markaBindingSource1BindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("markaBindingSource1BindingNavigatorSaveItem.Image")));
             this.markaBindingSource1BindingNavigatorSaveItem.Name = "markaBindingSource1BindingNavigatorSaveItem";
-            this.markaBindingSource1BindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
+            this.markaBindingSource1BindingNavigatorSaveItem.Size = new System.Drawing.Size(24, 22);
             this.markaBindingSource1BindingNavigatorSaveItem.Text = "Save Data";
             this.markaBindingSource1BindingNavigatorSaveItem.Click += new System.EventHandler(this.markaBindingSource1BindingNavigatorSaveItem_Click);
             // 
@@ -411,7 +416,7 @@
             this.btnzapisz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnzapisz.Font = new System.Drawing.Font("Stencil", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnzapisz.ForeColor = System.Drawing.Color.DarkOrange;
-            this.btnzapisz.Location = new System.Drawing.Point(232, 194);
+            this.btnzapisz.Location = new System.Drawing.Point(125, 194);
             this.btnzapisz.Margin = new System.Windows.Forms.Padding(0);
             this.btnzapisz.Name = "btnzapisz";
             this.btnzapisz.Size = new System.Drawing.Size(164, 38);
@@ -422,15 +427,15 @@
             // 
             // tytul
             // 
-            this.tytul.AutoSize = true;
             this.tytul.BackColor = System.Drawing.Color.Black;
             this.tytul.Font = new System.Drawing.Font("Stencil", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tytul.ForeColor = System.Drawing.Color.DarkOrange;
-            this.tytul.Location = new System.Drawing.Point(210, 53);
+            this.tytul.Location = new System.Drawing.Point(125, 53);
             this.tytul.Name = "tytul";
-            this.tytul.Size = new System.Drawing.Size(215, 29);
+            this.tytul.Size = new System.Drawing.Size(385, 35);
             this.tytul.TabIndex = 25;
             this.tytul.Text = "Wybierz robota";
+            this.tytul.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // close
             // 
@@ -463,6 +468,77 @@
             this.minimize.UseVisualStyleBackColor = false;
             this.minimize.Click += new System.EventHandler(this.minimize_Click);
             // 
+            // anuluj
+            // 
+            this.anuluj.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.anuluj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.anuluj.Font = new System.Drawing.Font("Stencil", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.anuluj.ForeColor = System.Drawing.Color.DarkOrange;
+            this.anuluj.Location = new System.Drawing.Point(346, 194);
+            this.anuluj.Margin = new System.Windows.Forms.Padding(0);
+            this.anuluj.Name = "anuluj";
+            this.anuluj.Size = new System.Drawing.Size(164, 38);
+            this.anuluj.TabIndex = 28;
+            this.anuluj.Text = "Anuluj";
+            this.anuluj.UseVisualStyleBackColor = false;
+            this.anuluj.Click += new System.EventHandler(this.anuluj_Click);
+            // 
+            // btnNTR
+            // 
+            this.btnNTR.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnNTR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNTR.Font = new System.Drawing.Font("Stencil", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNTR.ForeColor = System.Drawing.Color.DarkOrange;
+            this.btnNTR.Location = new System.Drawing.Point(304, 288);
+            this.btnNTR.Margin = new System.Windows.Forms.Padding(0);
+            this.btnNTR.Name = "btnNTR";
+            this.btnNTR.Size = new System.Drawing.Size(124, 61);
+            this.btnNTR.TabIndex = 29;
+            this.btnNTR.Text = "Nowy typ robota";
+            this.btnNTR.UseVisualStyleBackColor = false;
+            this.btnNTR.Click += new System.EventHandler(this.btnNTR_Click);
+            // 
+            // btnNM
+            // 
+            this.btnNM.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnNM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNM.Font = new System.Drawing.Font("Stencil", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNM.ForeColor = System.Drawing.Color.DarkOrange;
+            this.btnNM.Location = new System.Drawing.Point(468, 288);
+            this.btnNM.Margin = new System.Windows.Forms.Padding(0);
+            this.btnNM.Name = "btnNM";
+            this.btnNM.Size = new System.Drawing.Size(124, 61);
+            this.btnNM.TabIndex = 30;
+            this.btnNM.Text = "nowa marka";
+            this.btnNM.UseVisualStyleBackColor = false;
+            this.btnNM.Click += new System.EventHandler(this.btnNM_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox2.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.textBox2.Location = new System.Drawing.Point(232, 147);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(164, 24);
+            this.textBox2.TabIndex = 31;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tytul2
+            // 
+            this.tytul2.BackColor = System.Drawing.Color.Black;
+            this.tytul2.Font = new System.Drawing.Font("Stencil", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tytul2.ForeColor = System.Drawing.Color.DarkOrange;
+            this.tytul2.Location = new System.Drawing.Point(125, 53);
+            this.tytul2.Name = "tytul2";
+            this.tytul2.Size = new System.Drawing.Size(385, 35);
+            this.tytul2.TabIndex = 32;
+            this.tytul2.Text = "Nowa marka robota";
+            this.tytul2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -470,6 +546,11 @@
             this.BackColor = System.Drawing.Color.DarkOrange;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(626, 356);
+            this.Controls.Add(this.tytul2);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.btnNM);
+            this.Controls.Add(this.btnNTR);
+            this.Controls.Add(this.anuluj);
             this.Controls.Add(this.minimize);
             this.Controls.Add(this.close);
             this.Controls.Add(this.tytul);
@@ -507,20 +588,7 @@
 
         #endregion
 
-        private System.Windows.Forms.BindingSource markaBindingSource;
-        private System.Windows.Forms.BindingNavigator markaBindingNavigator;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton markaBindingNavigatorSaveItem;
+       
         private System.Windows.Forms.Label label3;
         private DataSet1 dataSet1;
         private System.Windows.Forms.BindingSource markaBindingSource1;
@@ -559,6 +627,11 @@
         private System.Windows.Forms.Label tytul;
         private System.Windows.Forms.Button close;
         private System.Windows.Forms.Button minimize;
+        private System.Windows.Forms.Button anuluj;
+        private System.Windows.Forms.Button btnNTR;
+        private System.Windows.Forms.Button btnNM;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label tytul2;
     }
 }
 

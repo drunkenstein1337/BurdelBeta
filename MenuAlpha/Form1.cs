@@ -20,7 +20,7 @@ namespace MenuAlpha
 {
     public partial class Form1 : Form
     {
-        
+        int dodaj = 0;
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -33,26 +33,7 @@ namespace MenuAlpha
         {
             this.MouseDown += Form1_MouseDown1;
             InitializeComponent();
-            string mainconn = ConfigurationManager.ConnectionStrings["MenuAlpha.Properties.Settings.Database1ConnectionString"].ConnectionString;
-            SqlConnection sqlconn = new SqlConnection(mainconn);
-            string sqlquery = "select * from [dbo].[Typ]";
-            SqlCommand sqlcom = new SqlCommand(sqlquery, sqlconn);
-            sqlconn.Open();
-            SqlDataAdapter sda = new SqlDataAdapter(sqlcom);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            comboBox1.ValueMember = "TypID";
-            comboBox1.DisplayMember = "Typ";
-            comboBox1.DataSource = dt;
-            comboBox2.Enabled = false;
-            comboBox3.Enabled = false;
-            comboBox5.Visible = false;
-            comboBox4.Visible = false;
-            textBox1.Visible = false;
-            btnzapisz.Visible = false;
-            tytul.Text = "Wybierz robota";
-
-
+            homepage();
 
         }
 
@@ -106,49 +87,101 @@ namespace MenuAlpha
 
         private void btnzapisz_Click_1(object sender, EventArgs e)
         {
-            if (comboBox4.SelectedValue != null && comboBox5.SelectedValue != null && !String.IsNullOrEmpty(textBox1.Text))
+            switch (dodaj)
             {
-                string mainconn = ConfigurationManager.ConnectionStrings["MenuAlpha.Properties.Settings.Database1ConnectionString"].ConnectionString;
-                SqlConnection sqlconn = new SqlConnection(mainconn);
-                sqlconn.Open();
+                case 1:
 
-                string query = "INSERT INTO Model(model, TypID, MarkaID) VALUES('" + textBox1.Text + "', '" + comboBox4.SelectedValue.ToString() + "', '" + comboBox5.SelectedValue.ToString() + "')";
-                SqlCommand sqlcom = new SqlCommand(query, sqlconn);
-                sqlcom.ExecuteNonQuery();
+                    if (comboBox4.SelectedValue != null && comboBox5.SelectedValue != null && !String.IsNullOrEmpty(textBox1.Text))
+                    {
+                        string mainconn = ConfigurationManager.ConnectionStrings["MenuAlpha.Properties.Settings.Database1ConnectionString"].ConnectionString;
+                        SqlConnection sqlconn = new SqlConnection(mainconn);
+                        sqlconn.Open();
 
-                
-                
-                sqlconn.Close();
-                MessageBox.Show("Zapisano");
+                        string query = "INSERT INTO Model(model, TypID, MarkaID) VALUES('" + textBox1.Text + "', '" + comboBox4.SelectedValue.ToString() + "', '" + comboBox5.SelectedValue.ToString() + "')";
+                        SqlCommand sqlcom = new SqlCommand(query, sqlconn);
+                        sqlcom.ExecuteNonQuery();
 
-                string qry = "SELECT TypID, MarkaID FROM Marka WHERE TypID = '" + comboBox4.SelectedValue.ToString() + "' AND MarkaID = '" + comboBox5.SelectedValue.ToString() + "'";
-                SqlDataAdapter sda = new SqlDataAdapter(qry, sqlconn);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                if (dt.Rows.Count == 0)
-                {
-                    sqlconn.Open();
-                    string query2 = "INSERT INTO Marka(marka, TypID, MarkaID) VALUES('" + comboBox5.Text + "', '" + comboBox4.SelectedValue.ToString() + "', '" + comboBox5.SelectedValue.ToString() + "')";
-                    SqlCommand sqlcom2 = new SqlCommand(query2, sqlconn);
-                    sqlcom2.ExecuteNonQuery();
-                }
+                        MessageBox.Show("Zapisano");
 
+                        string qry = "SELECT TypID, MarkaID FROM Marka WHERE TypID = '" + comboBox4.SelectedValue.ToString() + "' AND MarkaID = '" + comboBox5.SelectedValue.ToString() + "'";
+                        SqlDataAdapter sda = new SqlDataAdapter(qry, sqlconn);
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        if (dt.Rows.Count == 0)
+                        {
+                            string query2 = "INSERT INTO Marka(marka, TypID, MarkaID) VALUES('" + comboBox5.Text + "', '" + comboBox4.SelectedValue.ToString() + "', '" + comboBox5.SelectedValue.ToString() + "')";
+                            SqlCommand sqlcom2 = new SqlCommand(query2, sqlconn);
+                            sqlcom2.ExecuteNonQuery();
+
+                        }
+
+                        string qry2 = "SELECT typ FROM Typ WHERE typ = '" + comboBox4.Text + "'";
+                        SqlDataAdapter sda2 = new SqlDataAdapter(qry2, sqlconn);
+                        DataTable dt2 = new DataTable();
+                        sda2.Fill(dt2);
+                        if (dt2.Rows.Count == 0)
+                        {
+                            string query2 = "INSERT INTO Typ(typ) VALUES('" + comboBox4.Text + "')";
+                            SqlCommand sqlcom2 = new SqlCommand(query2, sqlconn);
+                            sqlcom2.ExecuteNonQuery();
+                        }
+                        sqlconn.Close();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nie wprowadzono danych.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    homepage();
+
+                    break;
+                case 2:
+                    if (!String.IsNullOrEmpty(textBox2.Text))
+                    {
+                        string mainconn = ConfigurationManager.ConnectionStrings["MenuAlpha.Properties.Settings.Database1ConnectionString"].ConnectionString;
+                        SqlConnection sqlconn = new SqlConnection(mainconn);
+                        sqlconn.Open();
+                       
+                        string query2 = "INSERT INTO TypAll(TypAll) VALUES('" + textBox2.Text + "')";
+                        SqlCommand sqlcom2 = new SqlCommand(query2, sqlconn);
+                        sqlcom2.ExecuteNonQuery();
+                        sqlconn.Close();
+
+
+                        MessageBox.Show("Zapisano");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nie wprowadzono danych.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    addpage();
+
+                    break;
+                case 3:
+                    if (!String.IsNullOrEmpty(textBox2.Text))
+                    {
+                        string mainconn = ConfigurationManager.ConnectionStrings["MenuAlpha.Properties.Settings.Database1ConnectionString"].ConnectionString;
+                        SqlConnection sqlconn = new SqlConnection(mainconn);
+                        sqlconn.Open();
+
+                        string query2 = "INSERT INTO MarkaAll(MarkaAll) VALUES('" + textBox2.Text + "')";
+                        SqlCommand sqlcom2 = new SqlCommand(query2, sqlconn);
+                        sqlcom2.ExecuteNonQuery();
+                        sqlconn.Close();
+
+                        MessageBox.Show("Zapisano");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nie wprowadzono danych.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    addpage();
+
+                    break;
             }
-            else
-            {
-                MessageBox.Show("Błąd", "", MessageBoxButtons.OK);
-            }
-
-            comboBox1.Visible = true;
-            comboBox2.Visible = true;
-            comboBox3.Visible = true;
-            comboBox4.Visible = false;
-            comboBox5.Visible = false;
-            textBox1.Visible = false;
-            btnzapisz.Visible = false;
-            button1.Visible = true;
-            btndodaj.Visible = true;
-            tytul.Text = "Wybierz robota";
         }
 
 
@@ -160,12 +193,12 @@ namespace MenuAlpha
 
         }
 
-
-        public void btndodaj_Click(object sender, EventArgs e)
+        public void addpage()
         {
+            dodaj = 1;
             comboBox4.Visible = true;
             comboBox5.Visible = true;
-            textBox1.Text= null;
+            textBox1.Text = null;
             textBox1.Visible = true;
             btnzapisz.Visible = true;
             comboBox1.Visible = false;
@@ -174,6 +207,19 @@ namespace MenuAlpha
             btndodaj.Visible = false;
             button1.Visible = false;
             tytul.Text = "Dodaj robota";
+            anuluj.Visible = true;
+
+            label1.Visible = true;
+            label2.Visible = true;
+            label3.Visible = true;
+
+            textBox2.Visible = false;
+            btnNM.Visible = true;
+            btnNTR.Visible = true;
+
+            tytul.Visible = true;
+            tytul2.Visible = false;
+
 
             string mainconn = ConfigurationManager.ConnectionStrings["MenuAlpha.Properties.Settings.Database1ConnectionString"].ConnectionString;
             SqlConnection sqlconn = new SqlConnection(mainconn);
@@ -187,7 +233,7 @@ namespace MenuAlpha
             comboBox4.ValueMember = "TID";
             comboBox4.DisplayMember = "TypAll";
             comboBox4.DataSource = dt;
- 
+
             string sqlquery2 = "select * from [dbo].[MarkaAll]";
             SqlCommand sqlcom2 = new SqlCommand(sqlquery2, sqlconn);
             SqlDataAdapter sda2 = new SqlDataAdapter(sqlcom2);
@@ -199,6 +245,50 @@ namespace MenuAlpha
             string marka1 = comboBox5.Text;
 
             sqlconn.Close();
+        }
+
+        public void homepage()
+        {
+            dodaj = 0;
+            string mainconn = ConfigurationManager.ConnectionStrings["MenuAlpha.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            SqlConnection sqlconn = new SqlConnection(mainconn);
+            string sqlquery = "select * from [dbo].[Typ]";
+            SqlCommand sqlcom = new SqlCommand(sqlquery, sqlconn);
+            sqlconn.Open();
+            SqlDataAdapter sda = new SqlDataAdapter(sqlcom);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            comboBox1.Visible = true;
+            comboBox2.Visible = true;
+            comboBox3.Visible = true;
+            comboBox1.ValueMember = "TypID";
+            comboBox1.DisplayMember = "Typ";
+            comboBox1.DataSource = dt;
+            comboBox2.Enabled = false;
+            comboBox3.Enabled = false;
+            comboBox5.Visible = false;
+            comboBox4.Visible = false;
+            textBox1.Visible = false;
+            btnzapisz.Visible = false;
+            tytul.Text = "Wybierz robota";
+            anuluj.Visible = false;
+            btndodaj.Visible = true;
+            button1.Visible = true;
+
+            label1.Visible = true;
+            label2.Visible = true;
+            label3.Visible = true;
+
+            textBox2.Visible = false;
+            btnNM.Visible = false;
+            btnNTR.Visible = false;
+
+            tytul.Visible = true;
+            tytul2.Visible = false;
+        }
+        public void btndodaj_Click(object sender, EventArgs e)
+        {
+            addpage();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -242,6 +332,73 @@ namespace MenuAlpha
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
- 
+
+        private void anuluj_Click(object sender, EventArgs e)
+        {
+            homepage();
+        }
+
+        private void btnNTR_Click(object sender, EventArgs e)
+        {
+            dodaj = 2;
+
+            comboBox4.Visible = false;
+            comboBox5.Visible = false;
+            textBox2.Text = null;
+            textBox1.Visible = false;
+            btnzapisz.Visible = true;
+            comboBox1.Visible = false;
+            comboBox2.Visible = false;
+            comboBox3.Visible = false;
+            btndodaj.Visible = false;
+            button1.Visible = false;
+            tytul.Text = "Dodaj robota";
+            anuluj.Visible = true;
+
+            label1.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
+
+            textBox2.Visible = true;
+            btnNM.Visible = false;
+            btnNTR.Visible = false;
+
+            tytul.Visible = false;
+            tytul2.Text = "Dodaj nowy typ robota";
+            tytul2.Visible = true;
+
+
+        }
+
+        private void btnNM_Click(object sender, EventArgs e)
+        {
+            dodaj = 3;
+
+            comboBox4.Visible = false;
+            comboBox5.Visible = false;
+            textBox2.Text = null;
+            textBox1.Visible = false;
+            btnzapisz.Visible = true;
+            comboBox1.Visible = false;
+            comboBox2.Visible = false;
+            comboBox3.Visible = false;
+            btndodaj.Visible = false;
+            button1.Visible = false;
+            tytul.Text = "Dodaj robota";
+            anuluj.Visible = true;
+
+            label1.Visible = false;
+            label2.Visible = false;
+            label3.Visible = false;
+
+            textBox2.Visible = true;
+            btnNM.Visible = false;
+            btnNTR.Visible = false;
+
+            tytul.Visible = false;
+            tytul2.Text = "Nowa marka robota";
+            tytul2.Visible = true;
+
+        }
     }
 }
