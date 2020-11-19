@@ -122,6 +122,7 @@ namespace MenuAlpha
             string mainconn = ConfigurationManager.ConnectionStrings["MenuAlpha.Properties.Settings.Database1ConnectionString"].ConnectionString;
             SqlConnection sqlconn = new SqlConnection(mainconn);
 
+            //wypełnienie comboboxa4
             sqlconn.Open();
             string sqlquery = "select * from [dbo].[TypAll]";
             SqlCommand sqlcom = new SqlCommand(sqlquery, sqlconn);
@@ -132,6 +133,7 @@ namespace MenuAlpha
             comboBox4.DisplayMember = "TypAll";
             comboBox4.DataSource = dt;
 
+            //wypełnienie comboboxa5
             string sqlquery2 = "select * from [dbo].[MarkaAll]";
             SqlCommand sqlcom2 = new SqlCommand(sqlquery2, sqlconn);
             SqlDataAdapter sda2 = new SqlDataAdapter(sqlcom2);
@@ -140,7 +142,6 @@ namespace MenuAlpha
             comboBox5.ValueMember = "MID";
             comboBox5.DisplayMember = "MarkaAll";
             comboBox5.DataSource = dt2;
-            string marka1 = comboBox5.Text;
 
             sqlconn.Close();
         }
@@ -167,12 +168,11 @@ namespace MenuAlpha
                         SqlDataAdapter sda = new SqlDataAdapter(qry, sqlconn);
                         DataTable dt = new DataTable();
                         sda.Fill(dt);
-                        if (dt.Rows.Count == 0)
+                        if (dt.Rows.Count == 0) //sprawdzenie czy weatości się nie dublują 
                         {
                             string query2 = "INSERT INTO Marka(marka, TypID, MarkaID) VALUES('" + comboBox5.Text + "', '" + comboBox4.SelectedValue.ToString() + "', '" + comboBox5.SelectedValue.ToString() + "')";
                             SqlCommand sqlcom2 = new SqlCommand(query2, sqlconn);
                             sqlcom2.ExecuteNonQuery();
-
                         }
 
                         string qry2 = "SELECT typ FROM Typ WHERE typ = '" + comboBox4.Text + "'";
@@ -245,13 +245,13 @@ namespace MenuAlpha
         }
 
 
-        private void markaBindingSource1BindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.markaBindingSource1.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.dataSet1);
+        //private void markaBindingSource1BindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        //{
+        //    this.Validate();
+        //    this.markaBindingSource1.EndEdit();
+        //    this.tableAdapterManager.UpdateAll(this.dataSet1);
 
-        }
+        //}
 
      
 
@@ -298,7 +298,6 @@ namespace MenuAlpha
             tytul2.Visible = false;
         }
 
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (comboBox3.Enabled == true && comboBox3.SelectedValue != null)
@@ -308,6 +307,7 @@ namespace MenuAlpha
                
         }
 
+        //zamknięcie okna
         private void close_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -318,34 +318,12 @@ namespace MenuAlpha
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void drag_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                this.Location = new Point(Cursor.Position.X + e.X, Cursor.Position.Y + e.Y);
-            }
-        }
-
-
-        private void Form1_MouseDown1(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
-        }
-
         private void anuluj_Click(object sender, EventArgs e)
         {
             homepage();
         }
 
+        //nowy typ robota
         private void btnNTR_Click(object sender, EventArgs e)
         {
             dodaj = 2;
@@ -378,6 +356,7 @@ namespace MenuAlpha
 
         }
 
+        //nowa marka
         private void btnNM_Click(object sender, EventArgs e)
         {
             dodaj = 3;
@@ -406,6 +385,28 @@ namespace MenuAlpha
             tytul.Visible = false;
             tytul2.Text = "Nowa marka robota";
             tytul2.Visible = true;
+
+        }
+
+        //przeciąganie okna po ekranie
+        private void Form1_MouseDown1(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Location = new Point(Cursor.Position.X + e.X, Cursor.Position.Y + e.Y);
+            }
+        }
+        private void drag_Click(object sender, EventArgs e)
+        {
 
         }
     }
