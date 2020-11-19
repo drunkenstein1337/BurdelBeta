@@ -20,10 +20,11 @@ namespace MenuAlpha
 {
     public partial class Form1 : Form
     {
-        int dodaj = 0;
+        int dodaj = 0; 
+
+        //przeciąganie okna po ekranie
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
-
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [System.Runtime.InteropServices.DllImport("user32.dll")]
@@ -33,8 +34,8 @@ namespace MenuAlpha
         {
             this.MouseDown += Form1_MouseDown1;
             InitializeComponent();
-            homepage();
 
+            homepage();//strona główna
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -83,6 +84,65 @@ namespace MenuAlpha
                 comboBox3.Enabled = true;
                 
            }
+        }
+
+        public void btndodaj_Click(object sender, EventArgs e)
+        {
+            addpage();
+        }
+
+        public void addpage()
+        {
+            dodaj = 1;
+            comboBox4.Visible = true;
+            comboBox5.Visible = true;
+            textBox1.Text = null;
+            textBox1.Visible = true;
+            btnzapisz.Visible = true;
+            comboBox1.Visible = false;
+            comboBox2.Visible = false;
+            comboBox3.Visible = false;
+            btndodaj.Visible = false;
+            button1.Visible = false;
+            tytul.Text = "Dodaj robota";
+            anuluj.Visible = true;
+
+            label1.Visible = true;
+            label2.Visible = true;
+            label3.Visible = true;
+
+            textBox2.Visible = false;
+            btnNM.Visible = true;
+            btnNTR.Visible = true;
+
+            tytul.Visible = true;
+            tytul2.Visible = false;
+
+
+            string mainconn = ConfigurationManager.ConnectionStrings["MenuAlpha.Properties.Settings.Database1ConnectionString"].ConnectionString;
+            SqlConnection sqlconn = new SqlConnection(mainconn);
+
+            sqlconn.Open();
+            string sqlquery = "select * from [dbo].[TypAll]";
+            SqlCommand sqlcom = new SqlCommand(sqlquery, sqlconn);
+            SqlDataAdapter sda = new SqlDataAdapter(sqlcom);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            comboBox4.ValueMember = "TID";
+            comboBox4.DisplayMember = "TypAll";
+            comboBox4.DataSource = dt;
+
+            string sqlquery2 = "select * from [dbo].[MarkaAll]";
+            SqlCommand sqlcom2 = new SqlCommand(sqlquery2, sqlconn);
+            SqlDataAdapter sda2 = new SqlDataAdapter(sqlcom2);
+            DataTable dt2 = new DataTable();
+            sda2.Fill(dt2);
+            comboBox5.ValueMember = "MID";
+            comboBox5.DisplayMember = "MarkaAll";
+            comboBox5.DataSource = dt2;
+            string marka1 = comboBox5.Text;
+
+            sqlconn.Close();
         }
 
         private void btnzapisz_Click_1(object sender, EventArgs e)
@@ -193,63 +253,12 @@ namespace MenuAlpha
 
         }
 
-        public void addpage()
-        {
-            dodaj = 1;
-            comboBox4.Visible = true;
-            comboBox5.Visible = true;
-            textBox1.Text = null;
-            textBox1.Visible = true;
-            btnzapisz.Visible = true;
-            comboBox1.Visible = false;
-            comboBox2.Visible = false;
-            comboBox3.Visible = false;
-            btndodaj.Visible = false;
-            button1.Visible = false;
-            tytul.Text = "Dodaj robota";
-            anuluj.Visible = true;
-
-            label1.Visible = true;
-            label2.Visible = true;
-            label3.Visible = true;
-
-            textBox2.Visible = false;
-            btnNM.Visible = true;
-            btnNTR.Visible = true;
-
-            tytul.Visible = true;
-            tytul2.Visible = false;
-
-
-            string mainconn = ConfigurationManager.ConnectionStrings["MenuAlpha.Properties.Settings.Database1ConnectionString"].ConnectionString;
-            SqlConnection sqlconn = new SqlConnection(mainconn);
-
-            sqlconn.Open();
-            string sqlquery = "select * from [dbo].[TypAll]";
-            SqlCommand sqlcom = new SqlCommand(sqlquery, sqlconn);
-            SqlDataAdapter sda = new SqlDataAdapter(sqlcom);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            comboBox4.ValueMember = "TID";
-            comboBox4.DisplayMember = "TypAll";
-            comboBox4.DataSource = dt;
-
-            string sqlquery2 = "select * from [dbo].[MarkaAll]";
-            SqlCommand sqlcom2 = new SqlCommand(sqlquery2, sqlconn);
-            SqlDataAdapter sda2 = new SqlDataAdapter(sqlcom2);
-            DataTable dt2 = new DataTable();
-            sda2.Fill(dt2);
-            comboBox5.ValueMember = "MID";
-            comboBox5.DisplayMember = "MarkaAll";
-            comboBox5.DataSource = dt2;
-            string marka1 = comboBox5.Text;
-
-            sqlconn.Close();
-        }
+     
 
         public void homepage()
         {
             dodaj = 0;
+            //łączenie z bazą danych
             string mainconn = ConfigurationManager.ConnectionStrings["MenuAlpha.Properties.Settings.Database1ConnectionString"].ConnectionString;
             SqlConnection sqlconn = new SqlConnection(mainconn);
             string sqlquery = "select * from [dbo].[Typ]";
@@ -258,6 +267,8 @@ namespace MenuAlpha
             SqlDataAdapter sda = new SqlDataAdapter(sqlcom);
             DataTable dt = new DataTable();
             sda.Fill(dt);
+
+            //sterowanie widocznością kontrolek
             comboBox1.Visible = true;
             comboBox2.Visible = true;
             comboBox3.Visible = true;
@@ -286,10 +297,7 @@ namespace MenuAlpha
             tytul.Visible = true;
             tytul2.Visible = false;
         }
-        public void btndodaj_Click(object sender, EventArgs e)
-        {
-            addpage();
-        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
