@@ -244,17 +244,6 @@ namespace MenuAlpha
             }
         }
 
-
-        //private void markaBindingSource1BindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        //{
-        //    this.Validate();
-        //    this.markaBindingSource1.EndEdit();
-        //    this.tableAdapterManager.UpdateAll(this.dataSet1);
-
-        //}
-
-     
-
         public void homepage()
         {
             dodaj = 0;
@@ -404,6 +393,14 @@ namespace MenuAlpha
             {
                 this.Location = new Point(Cursor.Position.X + e.X, Cursor.Position.Y + e.Y);
             }
+        }
+
+        private void markaBindingSource1BindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.markaBindingSource1.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.dataSet1);
+
         }
         private void drag_Click(object sender, EventArgs e)
         {
